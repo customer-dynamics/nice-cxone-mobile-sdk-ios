@@ -15,7 +15,6 @@
 
 import Foundation
 
-#if DEBUG
 class LenientURLSessionDelegate: NSObject, URLSessionDelegate {
     /// Allows for inspecting traffic in tools like Proxyman or CharlesApp.
     public func urlSession(
@@ -37,4 +36,3 @@ extension URLSession {
         URLSession(configuration: .default, delegate: LenientURLSessionDelegate(), delegateQueue: OperationQueue())
     }
 }
-#endif

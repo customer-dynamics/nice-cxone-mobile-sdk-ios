@@ -71,11 +71,7 @@ class SocketServiceImpl: NSObject, SocketService, EventReceiver {
         session: URLSessionProtocol? = nil
     ) {
         self.connectionContext = connectionContext
-        #if DEBUG
         self.urlSession = session ?? URLSession.lenient()
-        #else
-        self.urlSession = session ?? URLSession.shared
-        #endif
     }
     
     // MARK: - Methods
@@ -129,9 +125,7 @@ class SocketServiceImpl: NSObject, SocketService, EventReceiver {
             throw CXoneChatError.invalidData
         }
         
-        #if DEBUG
         LogManager.trace("Sending a message: \(message.formattedJSON ?? message).")
-        #endif
         
         if shouldCheck, accessToken?.isExpired(currentDate: Date.provide()) ?? false {
             delegate?.refreshToken()
@@ -253,9 +247,7 @@ private extension SocketServiceImpl {
                 if message == #""pong""# {
                     self?.pongReceived = true
                 } else {
-                    #if DEBUG
                     LogManager.trace("Did receive string: \(message.formattedJSON ?? message)")
-                    #endif
 
                     if let data = message.data(using: .utf8) {
                         self?.forward(data: data)

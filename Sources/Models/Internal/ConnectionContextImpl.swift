@@ -135,11 +135,7 @@ class ConnectionContextImpl: ConnectionContext {
         self.channelId = channelId
         self.destinationId = destinationId
         self.environment = environment
-        #if DEBUG
         self.session = session ?? URLSession.lenient()
-        #else
-        self.session = session ?? URLSession.shared
-        #endif
         self.visitDetailsStore = visitDetailsStore
     }
 
