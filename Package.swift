@@ -33,7 +33,7 @@ let package = Package(
         .package(url: "https://github.com/evgenyneu/keychain-swift", from: "20.0.0"),
         .package(url: "https://github.com/lukepistrol/SwiftLintPlugin", exact: "0.57.1"),
         .package(url: "https://github.com/Kolos65/Mockable", from: "0.0.11"),
-        .package(name: "CXoneGuideUtility", path: "../cxone-guide-utility")
+        .package(url: "https://github.com/nice-devone/nice-cxone-mobile-guide-utility-ios.git", from: "3.0.0-rc")
     ],
     targets: [
         .target(
@@ -41,7 +41,7 @@ let package = Package(
             dependencies: [
                 .product(name: "KeychainSwift", package: "keychain-swift"),
                 .product(name: "Mockable", package: "Mockable"),
-                .byName(name: "CXoneGuideUtility")
+                .product(name: "CXoneGuideUtility", package: "nice-cxone-mobile-guide-utility-ios")
             ],
             path: "Sources",
             resources: [
