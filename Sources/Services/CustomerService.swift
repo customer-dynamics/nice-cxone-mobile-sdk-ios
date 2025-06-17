@@ -130,7 +130,7 @@ extension CustomerService {
     func processCustomerAuthorizedEvent(_ response: CustomerAuthorizedEventDTO) async throws {
         LogManager.trace("Processing customer authorized")
         
-        if connectionContext.accessToken != nil {
+        if connectionContext.channelConfig.isAuthorizationEnabled {
             guard let token = response.postback.data.accessToken else {
                 throw CXoneChatError.missingAccessToken
             }
